@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Functions</h1>
+
+<p>A function that concatenates strings.</p>
+
+<p id="demo"></p>
+
+<p id="e"></p>
+
+<p id="d"></p>
+<p id="s"></p>
+<p id="fn"></p>
+<p id="fm"></p>
+
+<h1>The <b>this</b> Keyword</h1>
+<p>The <b>this</b> keyword makes it possible to use the same method with different objects.</p>
+
+<p id="eo"></p>
+
+<h1>JavaScript Objects</h1>
+<h2>The Object.values() Method</h2>
+<p>Object.values() returns an array of values from an object:</p>
+
+<p id="dmo"></p>
+
+<h1>JavaScript Objects</h1>
+<h2>Display Properties with JSON</h2>
+
+<p id="dem"></p>
+
+<h1>JavaScript Objects</h1> 
+<h2>Object Constructors</h2>
+
+<p id="deo"></p>
+
+<h1>JavaScript Objects</h1> 
+<h2>Object Constructors</h2>
+
+<p id="dm"></p>
+
+<h1>JavaScript Objects</h1>
+<h2>Adding a Property to a Constructor</h2>
+
+<p id="k"></p>
+
+
+<h1>JavaScript Objects</h1> 
+<h2>Object Constructors</h2>
+
+<p id="z"></p>
+
+<p id="fu"></p>
+
+<p id="g"></p>
+
+<h2>JavaScript Scope</h2>
+
+<p><b>carName</b> is undefined outside myFunction():</p>
+
+<p id="demol"></p>
+
+<p id="demoo"></p>
+
+<p id="def"></p>
+
+<p id="cat"></p>
+
+<h1>JavaScript if .. else</h1>
+
+<p>A time-based greeting:</p>
+
+<p id="mo"></p>
+
+<p id="do"></p>
+
+
+<script>
+function  stringconcatenator (q, w) {
+  let str = q + " " + w
+  return str;
+}
+document.getElementById("demo").innerHTML = stringconcatenator("Boy", "Girl");
+
+function evaluator (a, b, c)  {
+  let sum = a + b / c
+  return sum;
+}
+document.getElementById("e").innerHTML = evaluator(2, 4, 2);
+
+function addition (x, y) {
+  let sum = x + y
+  return sum;
+}
+document.getElementById("d").innerHTML = addition(10, 13);
+
+function subtraction (x, y) {
+  let difference = x - y
+  return difference;
+}
+document.getElementById("s").innerHTML = subtraction(19, 5);
+
+function Fullname (firstname, lastname) {
+  let fullname = firstname + " " + lastname
+  return fullname;
+}
+document.getElementById("fn").innerHTML = Fullname("Tosin", "Onyemari");
+
+function fam_members (firstchild, secondchild, thirdchild) {
+  let family = firstchild + " " + secondchild + " " + thirdchild
+  return family;
+}
+document.getElementById("fm").innerHTML = fam_members("Tosin", "Christiana", "Joseph");
+
+function Allstars (first, second, third, fourth) {
+  let allstars = first + " " + second + " " + third + " " + fourth
+  return allstars;
+}
+document.getElementById("fn").innerHTML = Allstars("Samuel the ultimate 10 ", "Feranmi the ultimate 7", "Tosin the ultimate 8", "Isreal the ultimate 2 ");
+
+// The following variables are defined in the global scope
+const num1 = 20;
+const num2 = 3;
+const name = "Chamakh";
+
+// This function is defined in the global scope
+function multiply() {
+  return num1 * num2;
+}
+
+console.log(multiply()); // 60
+
+// A nested function example
+function getScore() {
+  const num1 = 2;
+  const num2 = 3;
+
+  function add() {
+    return `${name} scored ${num1 + num2}`;
+  }
+
+  return add();
+}
+
+console.log(getScore()); // "Chamakh scored 5"
+
+// The outer function defines a variable called "name"
+const pet = function (name) {
+  const getName = function () {
+    // The inner function has access to the "name" variable of the outer function
+    return name;
+  };
+  return getName; // Return the inner function, thereby exposing it to outer scopes
+};
+const myPet = pet("Vivie");
+
+console.log(myPet()); // "Vivie"
+
+function outer() {
+  let name = "Tosin";
+
+  function inner() {
+    console.log(name);
+  }
+
+  return inner;
+}
+
+let myFunc = outer(); // outer() runs and finishes
+console.log(myFunc); // Logs the inner function definition
+
+<!-- myFunc(); // ???? -->
+
+  const person1 = {
+  name: "John",
+  hello: function() {
+    return "Hello " + this.name;
+  }
+};
+
+const person2 = {
+  name: "Anna",
+  hello: function() {
+    return "Hello " + this.name;
+  }
+};
+
+document.getElementById("eo").innerHTML = person2.hello();
+
+// Create an Object
+const person = {
+  name: "John",
+  age: 30,
+  city: "New York"
+};
+
+// Create an Array from the Properties
+const myArray = Object.values(person);
+
+// Stringify the Array
+let text = myArray.toString();
+
+document.getElementById("dmo").innerHTML = text;
+
+// Create an Object
+const peson = {
+  name: "John",
+  age: 30,
+  city: "New York"
+};
+
+// Display JSON
+let ext = JSON.stringify(peson);
+
+document.getElementById("dem").innerHTML = ext; 
+
+// Constructor Function for Person objects
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+}
+
+// Create a Person object
+const myFather = new Person("John", "Doe", 50, "blue");
+
+// Display age
+document.getElementById("deo").innerHTML =
+"My father is " + myFather.age + "."; 
+
+// Constructor function for Person objects
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+}
+
+// Create two Person objects
+const myFathe = new Person("John", "Doe", 50, "blue");
+const myMother = new Person("Sally", "Rally", 48, "green");
+
+// Display age
+document.getElementById("dm").innerHTML =
+"My father is " + myFathe.age + ". My mother is " + myMother.age + "."; 
+
+// Constructor function for Person Objects
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+}
+
+// Create 2 Person Objects
+const myFathr = new Person("John", "Doe", 50, "blue");
+const myMothr = new Person("Sally", "Rally", 48, "green");
+
+// Add a new Property
+Person.prototype.nationality = "English";
+
+// Display new Property
+document.getElementById("k").innerHTML =
+"The nationality of my father is " + myFathr.nationality; 
+
+// Constructor Function for Person objects
+function Person(first, last, age, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eye;
+  this.fullName = function() {
+    return this.firstName + " " + this.lastName
+  };
+}
+
+// Create a Person object
+const myFther = new Person("John", "Doe", 50, "blue");
+const myMther = new Person("Sally", "Rally", 48, "green");
+
+// Add a Name Method
+myFther.changeName = function (name) {
+  this.lastName = name;
+}
+
+myMther.changeName = function (name) {
+  this.lastName = name;
+}
+
+// Change Name
+myFther.changeName("D");
+myMther.changeName("R");
+
+
+
+// Display full name
+document.getElementById("z").innerHTML =
+"My father is " + myFther.fullName() + ". My mother is " + myMther.fullName() + ".";
+
+let fullname = "Tosin Onyemari";
+
+
+document.getElementById("fu").innerHTML = fullname;
+
+let carName = "Volvo";
+myFunction();
+
+function myFunction() {
+  document.getElementById("g").innerHTML = "I can display " + carName;
+}
+
+myFunction();
+
+function myFunction() {
+  let carName = "Volvo";
+  document.getElementById("demol").innerHTML = typeof carName + " " + carName;
+}
+
+document.getElementById("demoo").innerHTML = typeof carName;
+
+myFunction();
+// code here can use carName as a global variable
+document.getElementById("def").innerHTML = "I can display " + carName;
+
+function myFunction() {
+  carName = "Volvo";
+}
+
+function myfunc(){
+  document.getElementById("cat").innerHTML = carName;
+}
+
+function automaticvariables() {
+  let carName = "Volvo";
+}
+
+const hour = new Date().getHours(); 
+let greeting;
+
+if (hour < 18) {
+  greeting = "Good day";
+} else {
+  greeting = "Good evening";
+}
+
+document.getElementById("mo").innerHTML = greeting;
+
+x = 5; // Assign 5 to x
+
+elem = document.getElementById("do"); // Find an element 
+elem.innerHTML = x;           // Display x in the element
+
+var x; // Declare x
+
+Object.defineProperty(obj, "x", {
+  value: 10,
+  writable: false
+});
+
+"use strict";
+
+const obj = {};
+
+Object.defineProperty(obj, "x", {
+  value: 10,
+  writable: true,
+  configurable: true
+});
+
+obj.x = 20;
+console.log(obj.x);
+</script>
+</body>
+</html>
