@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox Playground</title>
+
+<style>
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --primary:#2c5364;
+  --bg:#f4f6f8;
+  --box:#87cefa;
+}
+
+/* =========================
+   RESET
+========================= */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  padding:20px;
+  background:var(--bg);
+}
+
+h2 {
+  margin-bottom:10px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.controls {
+  margin-bottom:10px;
+}
+
+button {
+  margin:5px;
+  padding:10px 14px;
+  border:none;
+  border-radius:6px;
+  background:var(--primary);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover {
+  transform:scale(1.05);
+  opacity:0.9;
+}
+
+.active {
+  background:black;
+}
+
+/* =========================
+   FLEX CONTAINER
+========================= */
+.container {
+  display:flex;
+  gap:10px;
+  height:300px;
+  border:2px solid var(--primary);
+  margin-top:20px;
+  border-radius:10px;
+  padding:10px;
+  background:white;
+  transition:0.3s;
+}
+
+/* FLEX ITEMS */
+.box {
+  width:60px;
+  height:60px;
+  background:var(--box);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:bold;
+  border-radius:6px;
+  transition:0.3s;
+}
+
+.box:hover {
+  transform:scale(1.1);
+}
+
+/* LABEL */
+#currentValue {
+  margin-top:10px;
+  font-weight:bold;
+  color:var(--primary);
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>🎮 Flexbox align-items Playground</h2>
+<p>Click buttons to see how <strong>align-items</strong> works 👇</p>
+
+<!-- BUTTONS -->
+<div class="controls">
+  <button onclick="setAlign(event,'flex-start')">flex-start</button>
+  <button onclick="setAlign(event,'center')">center</button>
+  <button onclick="setAlign(event,'flex-end')">flex-end</button>
+  <button onclick="setAlign(event,'stretch')">stretch</button>
+  <button onclick="setAlign(event,'baseline')">baseline</button>
+</div>
+
+<p id="currentValue">Current: center</p>
+
+<!-- FLEX CONTAINER -->
+<div class="container" id="boxContainer" style="align-items:center;">
+
+  <div class="box">1</div>
+
+  <div class="box" style="font-size:30px;">2</div>
+
+  <div class="box">3</div>
+
+</div>
+
+<script>
+function setAlign(e, value) {
+  const box = document.getElementById("boxContainer");
+  box.style.alignItems = value;
+
+  // update text
+  document.getElementById("currentValue").innerText = "Current: " + value;
+
+  // highlight active button
+  document.querySelectorAll("button").forEach(btn => btn.classList.remove("active"));
+  e.target.classList.add("active");
+
+}
+window.alert("Here we learn how flexbox align-items works!");
+</script>
+
+</body>
+</html>

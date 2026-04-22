@@ -2,179 +2,191 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CSS Study Hub</title>
 
 <style>
+:root {
+  --primary:#2c5364;
+  --bg-gradient:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  --card-bg:white;
+  --shadow:0 15px 30px rgba(0,0,0,0.2);
+}
 
-/* =========================
-   BASIC RESET
-========================= */
+* { margin:0; padding:0; box-sizing:border-box; }
+
 body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f4f4f4;
+  font-family: Arial, sans-serif;
+  background: var(--bg-gradient);
+  color:#333;
 }
 
-/* =========================
-   SECTION STYLES
-========================= */
+header {
+  text-align:center;
+  padding:50px 20px;
+  color:white;
+}
+
+header h1 { font-size:2.8rem; }
+header p { opacity:0.85; }
+
+.container {
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
 section {
-  background: white;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 10px;
+  background:var(--card-bg);
+  margin-bottom:25px;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:var(--shadow);
+  transition:0.3s;
 }
 
-/* =========================
-   SELECTORS DEMO
-========================= */
+section:hover { transform:translateY(-6px); }
 
-/* attribute selector */
-a[href*="home"] {
-  color: green;
+h2 { color:var(--primary); margin-bottom:10px; }
+
+.section-title {
+  font-size:1.4rem;
+  font-weight:bold;
+  margin-bottom:5px;
 }
 
-/* child selector */
-.hero > p {
-  color: gray;
+.section-desc {
+  font-size:0.9rem;
+  margin-bottom:10px;
+  color:#666;
 }
 
-/* adjacent sibling */
-h2 + p {
-  color: blue;
+.btn {
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:var(--primary);
+  color:white;
+  cursor:pointer;
+  margin-top:10px;
 }
 
-/* general sibling */
-h2 ~ p {
-  font-style: italic;
-}
+/* SELECTORS */
+a[href*="home"] { color:limegreen; font-weight:bold; }
+.hero > p { color:gray; }
+h2 + p { color:blue; }
+h2 ~ p { font-style:italic; }
+p:not(.special) { color:#444; }
 
-/* not selector */
-p:not(.special) {
-  color: #444;
-}
-
-/* empty selector */
 .box:empty {
-  width: 80px;
-  height: 40px;
-  background: yellow;
+  width:80px;
+  height:40px;
+  background:gold;
+  margin-top:10px;
 }
 
-/* nth-child */
-ul li:nth-child(odd) {
-  background: #eee;
-}
+ul li:nth-child(odd) { background:#eee; }
 
-/* =========================
-   FLEXBOX DEMO
-========================= */
+/* FLEXBOX */
 .flex {
-  display: flex;
-
-  /* change these to test */
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  border: 2px solid black;
-  padding: 10px;
+  display:flex;
+  gap:10px;
+  border:2px solid var(--primary);
+  padding:10px;
+  border-radius:10px;
 }
 
-/* flex items */
 .item {
-  background: lightblue;
-  padding: 10px;
+  flex:1;
+  padding:15px;
+  text-align:center;
+  background:lightblue;
+  border-radius:6px;
+  transition:0.3s;
 }
 
-/* flex-grow demo */
-.grow {
-  flex-grow: 1;
-}
+.item:hover { transform:scale(1.08); }
+.grow { flex:2; background:deepskyblue; }
 
-/* =========================
-   GRID DEMO
-========================= */
+/* GRID */
 .grid {
-  display: grid;
-
-  /* 3 columns */
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px;
 }
 
 .grid div {
-  background: pink;
-  padding: 10px;
+  background:pink;
+  padding:15px;
+  text-align:center;
+  border-radius:6px;
+  transition:0.3s;
 }
 
-/* grid placement */
-.grid-item {
-  grid-column: 1 / 3; /* span 2 columns */
-  grid-row: 1 / 2;
-}
+.grid div:hover { transform:scale(1.05); }
+.grid-item { grid-column:span 2; background:hotpink; }
 
-/* =========================
-   TRANSFORM DEMO (2D + 3D)
-========================= */
-
-/* 3D scene */
+/* 3D */
 .scene {
-  perspective: 800px;
+  perspective:800px;
+  display:flex;
+  justify-content:center;
 }
 
-/* card */
 .card {
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(45deg, blue, cyan);
-  color: white;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transition: 0.5s;
+  width:150px;
+  height:150px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  border-radius:12px;
+  background:linear-gradient(45deg,blue,cyan);
+  transition: transform 0.8s ease;
 }
-
-/* hover 3D effect */
 .card:hover {
-  transform:
-    rotateX(30deg)
-    rotateY(30deg)
-    translateZ(50px);
+  transform: rotate(360deg);
 }
 
+footer p {
+  text-align:center;
+  padding:20px;
+  color:#fff;
+  opacity:0.8;
+}
 </style>
 </head>
 
 <body>
 
-<h1>🔥 CSS Study Hub</h1>
+<header>
+  <h1 style="font-size: 25px; text-align: center;">🔥 CSS Study Hub</h1>
+  <p>Practicing real CSS like a developer</p>
+</header>
 
-<!-- =========================
-     SELECTORS SECTION
-========================= -->
+<main class="container">
+
 <section class="hero">
-  <h2>CSS Selectors</h2>
+  <div class="section-title"  style="font-size: 29px; text-align: center; margin:20px; ">🎯 CSS Selectors</div>
+  <div class="section-desc">Learn how different selectors target elements</div>
 
-  <a href="u.html">Home Link (attribute selector)</a>
+  <a href="u.html">Home Link</a>
 
-  <p>This is child selector (>)</p>
+  <p>Child selector</p>
   <p class="special">Special paragraph</p>
 
   <h2>Sibling Example</h2>
-  <p>Adjacent sibling (+)</p>
-  <p>General sibling (~)</p>
+  <p>Adjacent sibling</p>
+  <p>General sibling</p>
 
-  <p>Normal paragraph (not selector demo)</p>
-
+  <p>Normal paragraph</p>
   <div class="box"></div>
 </section>
 
-<!-- LIST nth-child -->
 <section>
-  <h2>nth-child Demo</h2>
+  <div class="section-title"   style="font-size: 29px; text-align: center; margin:20px; ">📊 nth-child</div>
+  <div class="section-desc">Style elements based on their position</div>
+
   <ul>
     <li>Item 1</li>
     <li>Item 2</li>
@@ -183,62 +195,53 @@ ul li:nth-child(odd) {
   </ul>
 </section>
 
-<!-- =========================
-     FLEXBOX SECTION
-========================= -->
 <section>
-  <h2>Flexbox</h2>
+  <div style="font-size: 29px; text-align: center; margin:20px; " class="section-title">📦 Flexbox</div>
+  <div class="section-desc">Control layout and alignment easily</div>
 
-  <div class="flex">
+  <button class="btn" onclick="toggleFlex()">Toggle Direction</button>
+
+  <div class="flex" id="flexBox">
     <div class="item">1</div>
-    <div class="item grow">2 (grow)</div>
+    <div class="item grow">2</div>
     <div class="item">3</div>
   </div>
-
-  <!-- Comments:
-  flex-direction → row/column
-  justify-content → main axis spacing
-  align-items → cross axis alignment
-  flex-grow → who takes space
-  -->
 </section>
 
-<!-- =========================
-     GRID SECTION
-========================= -->
 <section>
-  <h2>CSS Grid</h2>
+  <div  style="font-size: 29px; text-align: center; margin:20px; " class="section-title">🧱 CSS Grid</div>
+  <div class="section-desc">Build powerful 2D layouts</div>
 
   <div class="grid">
-    <div class="grid-item">BIG ITEM</div>
+    <div class="grid-item">BIG</div>
     <div>2</div>
     <div>3</div>
     <div>4</div>
   </div>
-
-  <!-- Comments:
-  grid-column: start / end
-  grid-row: start / end
-  -->
 </section>
 
-<!-- =========================
-     3D TRANSFORM SECTION
-========================= -->
 <section class="scene">
-  <h2>3D Transform</h2>
-
-  <div class="card">
-    HOVER ME
+  <div>
+    <div class="section-title"   style="font-size: 29px; text-align: center; margin:20px; ">🎲 3D Transform</div>
+    <div class="section-desc">Hover to see 3D effects</div>
+    <div class="card">HOVER ME</div>
   </div>
-
-  <!-- Comments:
-  perspective → depth
-  rotateX → tilt up/down
-  rotateY → turn left/right
-  translateZ → move forward/back
-  -->
 </section>
+
+</main>
+
+<footer>
+  <p>Keep building. You're getting better 🚀</p>
+</footer>
+
+<script>
+function toggleFlex() {
+  const box = document.getElementById('flexBox');
+  box.style.flexDirection = box.style.flexDirection === 'column' ? 'row' : 'column';
+}
+
+alert("Welcome to Tosin CSS Study Hub! Explore and enjoy learning 🚀");
+</script>
 
 </body>
 </html>
